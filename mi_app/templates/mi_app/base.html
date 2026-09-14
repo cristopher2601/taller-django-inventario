@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Control de Inventario - Taller Mecánico{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Barra lateral de navegación -->
+        <aside class="sidebar">
+            <h2>⚙️ Taller<span>Panel</span></h2>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'inventario' %}" class="{% if request.resolver_match.url_name == 'inventario' %}active{% endif %}">📦 Inventario</a></li>
+                    <li><a href="{% url 'ingresar' %}" class="{% if request.resolver_match.url_name == 'ingresar' %}active{% endif %}">📑 Ingresar Repuesto</a></li>
+                    <li><a href="{% url 'alertas' %}" class="{% if request.resolver_match.url_name == 'alertas' %}active{% endif %}">⚠️ Alertas Stock</a></li>
+                    <li><a href="{% url 'proveedores' %}" class="{% if request.resolver_match.url_name == 'proveedores' %}active{% endif %}">👥 Proveedores</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            {% block content %}
+            <!-- El contenido dinámico de las otras vistas se insertará aquí -->
+            {% endblock %}
+        </main>
+    </div>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
